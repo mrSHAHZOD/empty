@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\showProfileController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,35 +17,8 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome'); 
 });
- 
-Route::get  ('/hello/{name?}',function($name=null){
-    return'hello '.$name;
+ Route::get('/user/{id?}', [UserController::class,'show']);
 
-});
-
-Route::get  ('/user/{name?}',function($name=null){
-    return'hello user '.$name;
-
-});
-
-
-Route::get('/search',function(Request $request ){
-   return $name= $request->all(); 
-});
-
-
-
-Route::group(['prefix'=>'dashboard'], function(){
-    Route::get('/users',function(){
-        return 'users dashboard';
-    });
-    
-    Route::get('/statik',function(){
-        return 'statistika dashboard';
-    });
-});  
-
-
-//yangisig
+ Route::get('/show/{id}', ShowProfileController::class);
